@@ -87,3 +87,19 @@ function percent() {
     updateDisplay();
   }
 }
+
+document.addEventListener('keydown', (e) => {
+  if (e.key >= '0' && e.key <= '9') inputDigit(e.key);
+  else if (e.key === '.') inputDecimal();
+  else if (e.key === '+') inputOperator('+');
+  else if (e.key === '-') inputOperator('-');
+  else if (e.key === '*') inputOperator('*');
+  else if (e.key === '/') { e.preventDefault(); inputOperator('/'); }
+  else if (e.key === 'Enter' || e.key === '=') calculate();
+  else if (e.key === 'Escape') clearAll();
+  else if (e.key === 'Backspace') {
+    if (currentInput.length > 1) currentInput = currentInput.slice(0, -1);
+    else currentInput = '0';
+    updateDisplay();
+  }
+});
